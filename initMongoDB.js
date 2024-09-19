@@ -1,14 +1,16 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-const {DB_HOST} = process.env
- 
+dotenv.config();
+
+const { DB_HOST } = process.env;
+
 export const initMongoDB = async () => {
-    try{
-        await mongoose.connect(DB_HOST)
-        console.log("Successfully connection to MongoDB")
-
-    }catch(error) {
-        console.log(`Connecting error ${error.message}`)
-        throw error
-    }
-}
+  try {
+    await mongoose.connect(DB_HOST);
+    console.log('Successfully connected to MongoDB');
+  } catch (error) {
+    console.log(`Error connecting to MongoDB: ${error.message}`);
+    throw error;
+  }
+};
