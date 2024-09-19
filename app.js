@@ -1,11 +1,9 @@
-import express from "express";
-import cors from 'cors'
-
-const app = express()
-
-app.use(cors())
-app.use(express.json())
+import { initMongoDB } from "./initMongoDB.js"
+import { startServer } from "./startServer.js"
 
 
-const PORT = process.env.PORT || 5000
-app.listen(PORT, () => console.log(`Сервер запущено на порту ${PORT}`))
+const bootstrap = async () => {
+    await initMongoDB()
+    startServer()
+}
+bootstrap()
