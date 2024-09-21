@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { getEvents, getUser, getUserById } from "./services/eventService.js";
+import { User } from "./models/Users.js";
 
 dotenv.config();
 
@@ -43,20 +44,14 @@ export const startServer = () => {
         });
       }
 
-      const newUser = {
-        userName,
-        userEmail,
-        userBirth,
+      const newUser = new User({
+        name,
+        email,
+        birthday,
         event,
-      };
+      });
 
-      let users = [];
-      const saveUser = async (user) => {
-        users.push(user); // Додаємо користувача в масив
-        return user; // Повертаємо нового користувача
-      };
-
-      const savedUser = await saveUser(newUser)
+      const savedUser = await newUser.save();
 
       res.status(201).json({
         status: 201,
