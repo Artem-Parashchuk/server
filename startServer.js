@@ -45,9 +45,9 @@ export const startServer = () => {
       }
 
       const newUser = new User({
-        name,
-        email,
-        birthday,
+        userName,
+        userEmail,
+        userBirth,
         event,
       });
 
